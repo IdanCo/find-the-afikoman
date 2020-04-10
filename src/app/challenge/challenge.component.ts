@@ -24,6 +24,7 @@ export class ChallengeComponent implements OnInit, OnDestroy {
   @ViewChild('viewer', { static: true }) viewerElement: ElementRef;
   hint$: BehaviorSubject<string> = new BehaviorSubject<string>('...');
   hintTicker$: Subject<string> = new Subject<string>();
+  timerRef;
 
   constructor(private route: ActivatedRoute,
               private challengeService: ChallengeService,
@@ -57,6 +58,7 @@ export class ChallengeComponent implements OnInit, OnDestroy {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
     this.osdService.destroy();
+    clearInterval(this.timerRef);
   }
 
   private loadChallenge(challenge: Challenge) {
@@ -88,7 +90,7 @@ export class ChallengeComponent implements OnInit, OnDestroy {
           takeUntil(this.unsubscribe$),
         ).subscribe(event => this.onViewportChange(event));
         // TODO: fix this observable hell
-        setInterval(() => this.hintTicker$.next(this.hint$.getValue()), 2000);
+        this.timerRef = setInterval(() => this.hintTicker$.next(this.hint$.getValue()), 2000);
       }
       this.stopWatch.toggleTimer();
     });
