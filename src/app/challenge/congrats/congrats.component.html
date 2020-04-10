@@ -7,10 +7,10 @@
   </p>
 
   <p>
-    <a mat-button [routerLink]="'/'" [mat-dialog-close]="">אתגרים נוספים</a>
-    &nbsp;
     <app-share-button
       text=" מצאתי את האפיקומן ב-{{ stopwatch.counter / 1000 |  number:'1.0-0' }} שניות"
       [url]="'https://afikoman.idancohen.com/challenge/' + challengeService.challenge.id"></app-share-button>
+    &nbsp;
+    <a mat-flat-button [routerLink]="'/'" color="accent"  [mat-dialog-close]="">עוד אחד!</a>
   </p>
 </div>
