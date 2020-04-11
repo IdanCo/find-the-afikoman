@@ -124,8 +124,11 @@ export class EditComponent implements OnInit, OnDestroy {
   }
 
   resize(change: number) {
-    if (change < 0 && this.afikomanPlacement.width / this.challengeService.challenge.width < 0.004) return;
-    if (change > 0 && this.afikomanPlacement.width / this.challengeService.challenge.width > 0.2) return;
+    const ratio =
+      (this.afikomanPlacement.width * this.afikomanPlacement.height)
+      / (this.challengeService.challenge.width * this.challengeService.challenge.height);
+    if (change < 0 && ratio < 0.0001) return;
+    if (change > 0 && ratio > 0.007) return;
 
     this.afikomanPlacement.width = (10 + change) / 10 * this.afikomanPlacement.width;
     this.afikomanPlacement.height = (10 + change) / 10 * this.afikomanPlacement.height;
