@@ -1,5 +1,17 @@
 <div class="cards">
   <mat-card class="challenge-card"
+            (click)="createChallenge()">
+    <mat-card-header>
+      <mat-card-title>
+        צרו אתגר משלכם!
+      </mat-card-title>
+      <mat-card-subtitle>בחרו או צלמו תמונה והחביאו בה את האפיקומן</mat-card-subtitle>
+    </mat-card-header>
+    <p style="text-align: left;">
+      <button mat-flat-button color="accent">קדימה!</button>
+    </p>
+  </mat-card>
+  <mat-card class="challenge-card"
             *ngFor="let challenge of privateChallenges$ | async"
             (click)="openChallenge(challenge)">
     <mat-card-header>
